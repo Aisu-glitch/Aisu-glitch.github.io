@@ -19,7 +19,27 @@
             <p>Temp placeholder text for my page</p>
             <p>This is a second line for the test text</p>
             <p>updated test</p>
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"></iframe>
+            <iframe id="existing-iframe-example" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"></iframe>
+            <script type="text/javascript">
+              var tag = document.createElement('script');
+              tag.id = 'iframe-demo';
+              tag.src = 'https://www.youtube.com/iframe_api';
+              var firstScriptTag = document.getElementsByTagName('script')[0];
+              firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+              var player;
+              function onYouTubeIframeAPIReady() {
+                player = new YT.Player('existing-iframe-example', {
+                    events: {
+                      'onReady': onPlayerReady,
+                      'onStateChange': onPlayerStateChange
+                    }
+                });
+              }
+              function onPlayerReady(event) {
+                event.target.playVideo();
+              }
+            </script>
         </center>
     </div>
     <div id="Footer">
